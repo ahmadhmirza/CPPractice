@@ -1,24 +1,28 @@
 #include <stdio.h>
-/* copy input to output; 1st version */
+
+//symbolic constants
+//for f to c conversion
+#define LOWER 0
+#define UPPER 300
+#define STEP 20
+//for word count
 #define IN 1 /* inside a word */
 #define OUT 0 /* outside a word */
 
-int fahrToCelsius(){
-    int f,c;
-    int lower, upper, step;
-    lower = 0;
-    upper = 300;
-    step = 20;
 
-    f = lower;
-    while (f<=upper) {
-        c = 5 * (f-32) / 9;
-        printf("%d Fahrenheit in Degree Celsius: %d\n",f,c);
-        f = f+step;
+//function to convert temperature units
+int fahrToCelsius(){
+    float f,c;
+    f = LOWER;
+    while (f<=UPPER) {
+        c = (5.0/9.0) * (f-32);
+        printf("%3.0f Fahrenheit in Degree Celsius: %.1f\n",f,c);
+        f = f+STEP;
     }
 return 0;
 }
 
+//function to read and display characters on screen
 int readChar(){
     int c;
     c = getchar();
@@ -28,8 +32,10 @@ int readChar(){
     }
 }
 
+//function declaration
 int power(int ,int);
 
+//function to count words and characters in one line
 int countWords()
 {
     int c, nl, nw, nc, state;
@@ -46,25 +52,28 @@ int countWords()
             ++nw;
         }
     }
-    printf("%d %d %d\n", nl, nw, nc);
+    printf("Total words= %d; Total characters= %d\n", nw, nc);
 }
 
-main()
+int main()
 {
+    /*
     fahrToCelsius();
-    //readChar();
+    readChar();
     int base=2;
     int n=2;
     int a= power(2,2);
     printf("%d raised to the power %d = %d\n",base,n, a);
+    */
     countWords();
+    return 0;
 }
 
 int power(int base, int n)
 {
-int i, p;
-p = 1;
-for (i = 1; i <= n; ++i)
-p = p * base;
-return p;
+    int i, p;
+    p = 1;
+    for (i = 1; i <= n; ++i)
+    p = p * base;
+    return p;
 }
