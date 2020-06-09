@@ -32,7 +32,7 @@ int readChar(){
     }
 }
 
-//function declaration
+//function prototype
 int power(int ,int);
 
 //function to count words and characters in one line
@@ -55,6 +55,35 @@ int countWords()
     printf("Total words= %d; Total characters= %d\n", nw, nc);
 }
 
+int replaceSpaces(){
+    int c, pc;
+    pc = EOF;
+
+    while ((c = getchar()) != EOF) {
+        if (c == ' '){
+            if (pc != ' ' && pc != '\t')
+                putchar(c);
+        }
+        else if (c == '\t') {
+
+            if (pc != ' ' || pc != '\t'){
+                ;
+            }
+            else {
+                putchar(' ');
+            }
+
+        }
+
+        else if (c != ' '){
+            putchar(c);
+        }
+        pc = c;
+    }
+
+    return 0;
+}
+
 int main()
 {
     /*
@@ -64,8 +93,9 @@ int main()
     int n=2;
     int a= power(2,2);
     printf("%d raised to the power %d = %d\n",base,n, a);
-    */
-    countWords();
+
+    countWords();*/
+    replaceSpaces();
     return 0;
 }
 
