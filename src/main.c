@@ -56,19 +56,24 @@ int countWords()
 }
 
 int replaceSpaces(){
+    // character and previous character
     int c, pc;
     pc = EOF;
 
     while ((c = getchar()) != EOF) {
+        //current char is space
         if (c == ' '){
+            // previous char was not a space or a tab print space
             if (pc != ' ' && pc != '\t')
                 putchar(c);
         }
+        //current char is tab
         else if (c == '\t') {
-
-            if (pc != ' ' || pc != '\t'){
+            //previous char was a space or a tab do nothing
+            if (pc == ' ' || pc == '\t'){
                 ;
             }
+            // otherwise replace tab with a single space
             else {
                 putchar(' ');
             }
