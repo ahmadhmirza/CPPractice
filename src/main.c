@@ -89,6 +89,50 @@ int replaceSpaces(){
     return 0;
 }
 
+struct Results {
+  int * C;
+  int L; // Length of the array
+};
+int find_maximum(int a[], int n) {
+  int c, max;
+
+  max = a[0];
+
+  for (c = 1; c < n; c++) {
+    if (a[c] > max) {
+       max = a[c];
+    }
+  }
+
+  return max;
+}
+
+struct Results solution(int N, int A[], int M) {
+    struct Results result;
+
+    int *counter=calloc(N, sizeof(int));
+
+    for(i=0; i<=M; i++) //iterate over A
+        {
+        if (A[i]<=N && A[i]>=0)
+        {
+            ++counter[A[i]-1];
+        }
+        else if (A[i] == N+1)
+        {
+            int max;
+            max = find_maximum(counter,N); // find max value of the counters
+            for (int j =0, j<M; j++) //iterate over counters and set to max
+            {
+                counter[j] = max;
+            }
+        }
+    }
+    result.C = counter;
+    result.L = N;
+    return result;
+}
+
 int main()
 {
     /*
